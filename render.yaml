@@ -1,0 +1,40 @@
+# Render Blueprint: deploys the API and the website from this repo.
+services:
+  - type: web
+    name: baddie-burger-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/menu
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: STAFF_USERNAME
+        sync: false
+      - key: STAFF_PASSWORD
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
+
+  - type: web
+    name: baddie-burger
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false

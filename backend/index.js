@@ -25,6 +25,7 @@ const Order = mongoose.model("Order", new mongoose.Schema({
 }, { timestamps: true }));
 
 const app = express();
+app.set("trust proxy", 1); // behind the host proxy, so the login limiter sees each visitor's real IP
 app.use(cors({ origin: CLIENT_ORIGIN }));
 app.use(express.json({ limit: "20kb" }));
 
