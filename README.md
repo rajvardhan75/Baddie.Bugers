@@ -1,5 +1,8 @@
 # Baddie Burger
 
+
+Checkout the finished product before everything: https://baddie-bugers-1.onrender.com/
+
 A burger joint website with online ordering, live order tracking, and a staff dashboard.
 
 - **Customers:** browse the menu, add to an order, place it, and track its progress. No account needed.
